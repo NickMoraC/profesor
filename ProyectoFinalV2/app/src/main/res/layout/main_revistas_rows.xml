@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.graphics.Color"/>
+        <variable name="revistas" type="com.uniguajira.proyectofinalv2.repositories.room.entities.Revistas"/>
+        <variable name="callback" type="com.uniguajira.proyectofinalv2.views.callback.RevistasClickCallback"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/normal_margin"
+            app:cardCornerRadius="@dimen/small_margin"
+            app:cardElevation="@dimen/very_small_margin"
+            android:onClick="@{() ->  callback.onClick(revistas)}">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/ivProfilePicture"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_margin="@dimen/normal_margin"
+                    android:src="@drawable/profile_placeholder" />
+
+                <LinearLayout
+                    android:id="@+id/llInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/normal_margin"
+                    android:layout_toEndOf="@+id/ivProfilePicture"
+                    android:layout_toStartOf="@+id/btnDelete"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txttitulo"
+                        style="@style/UserTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{revistas.titulo, default="XXXXXXX"}' />
+
+                    <TextView
+                        android:id="@+id/txtUserAge"
+                        style="@style/UserTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{revistas.issn, default="1234567890"}' />
+
+                    <TextView
+                        android:id="@+id/txtDOB"
+                        style="@style/UserTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{revistas.numero, default="1234567890"}' />
+
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/normal_margin"
+                    android:src="@drawable/ic_edit_black_24dp"
+                    android:onClick="@{() ->  callback.onUpdate(revistas)}"/>
+
+                <ImageView
+                    android:id="@+id/btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/llInfo"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/normal_margin"
+                    android:src="@drawable/ic_delete_forever_black_24dp"
+                    android:onClick="@{() ->  callback.onDelete(revistas)}"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</layout>
